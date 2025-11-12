@@ -18,7 +18,7 @@ BEGIN
   ALTER DATABASE SalesDataWarehouse SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
   DROP DATABASE SalesDataWarehouse;
 END;
-GO;
+GO
 
 --Creating the database
 CREATE DATABASE SalesDataWarehouse;
