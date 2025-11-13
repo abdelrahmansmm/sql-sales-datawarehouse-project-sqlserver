@@ -1,12 +1,15 @@
 /*
-- Load method is Full Load Data -> using (Truncate and Insert).
+This code to create a Stored Procedure for Loading the data into the Bronze Layer.
+Stored Procedure -> bronze.load_bronze
+
+- Loading method is Full Load Data -> using (Truncate and Insert).
 - Inserting data to the bronze tables from the source CSV file using BULK INSERT.
 - BULK INSERT uses WITH Clause which determine what the first row in the file is, and determines the delimiter.
+- The code calculates the time taken to load each table and also the time taken to complete the whole process.
 
 -- WARNING: Running the code without the TRUNCATE query will cause a duplication in the table.
 
 - The code is writtin within TRY AND CATCH to handle errors that may appear.
-- All loading code will be store in a Stored Procedure Called bronze.load_bronze.
 */
 USE SalesDataWarehouse;
 GO
