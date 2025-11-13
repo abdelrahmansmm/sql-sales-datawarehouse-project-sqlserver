@@ -1,3 +1,13 @@
+/*
+This code to create a Stored Procedure to load the data into the Silver Layer.
+
+This Script:
+- Performs ETL process (Extract, Transform, Load) to put the data into the Silver Schema Tables from Bronze Schema Tables.
+- Truncates Silver Tables.
+- Inserts transformed and cleaned data from Bronze Layer Tables to Silver Layer Tables.
+- The code calculates the time taken to load each table and the time taken to complete the whole process.
+
+*/
 CREATE OR ALTER PROCEDURE silver.load_silver AS
 BEGIN
 	BEGIN TRY
