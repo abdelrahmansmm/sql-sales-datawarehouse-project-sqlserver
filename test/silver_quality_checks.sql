@@ -66,6 +66,14 @@ SELECT prd_key
 FROM silver.crm_prd_info
 WHERE prd_key != TRIM(prd_key)
 
+--Checking cat_id consistency.
+SELECT DISTINCT cat_id
+FROM silver.crm_prd_info
+WHERE cat_id NOT IN (
+				SELECT id
+				FROM silver.erp_px_cat_g1v2
+				)
+
 -- Checking for spaces in prd_nm
 -- Expectation: No result
 -- Result: 0 records
@@ -152,6 +160,22 @@ WHERE sls_price <= 0 OR sls_price IS NULL
 	OR sls_quantity <= 0 OR sls_quantity IS NULL
 	OR sls_sales <= 0 OR sls_sales IS NULL
 	OR sls_sales != sls_quantity * sls_price;
+
+-- Checking consistency
+SELECT *
+FROM silver.crm_sales_details;
+
+SELECT sls_cust_id
+FROM silver.crm_sales_details
+WHERE sls_cust_id NOT IN (
+	SELECT cst_id
+	FROM silver.crm_cust_info)
+
+SELECT sls_prd_key
+FROM silver.crm_sales_details
+WHERE sls_prd_key NOT IN (
+	SELECT prd_key
+	FROM silver.crm_prd_info)
 -- END silver.crm_sales_details
 
 -- =======================
